@@ -1,5 +1,10 @@
-const db = require('./db')
+const Sequelize = require('sequelize')
 
-require('./models')
+const db = new Sequelize(
+  process.env.DATABASE_URL || 'postgres://localhost:5432/already',
+  {
+    logging: false,
+  }
+)
 
 module.exports = db

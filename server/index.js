@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const morgan = require('morgan')
 const compression = require('compression')
-const db = require('./db/db')
+const db = require('./db')
 const app = express()
 const PORT = process.env.PORT || 5000
 
@@ -59,12 +59,12 @@ app.use((err, req, res, next) => {
 // for deployment only
 if (process.env.NODE_ENV === 'production') {
   // serve any static files
-  app.use(express.static(path.join(__dirname, 'client/build')));
-    
+  app.use(express.static(path.join(__dirname, '../client/build')))
+
   // handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+  })
 }
 
 // sync db and run app
