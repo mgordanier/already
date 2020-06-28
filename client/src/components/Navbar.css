@@ -1,0 +1,11 @@
+.logotype {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 25px;
+}
+
+#nav-toggle-state {
+  display: none;
+}
+#nav-toggle-state:checked ~ .navbar-menu {
+  display: block;
+}

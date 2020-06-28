@@ -1,11 +1,11 @@
 import React from 'react'
 import './App.css'
-import {Navbar} from './components'
+import { Navbar } from './components'
 import Routes from './Routes'
 
 function App() {
   return (
-    <div className="App">
+    <div className="container App">
       <Navbar />
       <Routes />
     </div>

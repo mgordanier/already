@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { auth } from '../store'
+import './AuthForm.css'
 
 /**
  * COMPONENT
@@ -10,26 +11,36 @@ const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
+    <section className="section">
+      <div className="container box form">
+        <form onSubmit={handleSubmit} name={name}>
+          <div className="field">
+            <label htmlFor="email" className="label">
+              Email
+            </label>
+            <div className="control">
+              <input name="email" type="text" className="input" />
+            </div>
+          </div>
+          <div className="field">
+            <label htmlFor="password" className="label">
+              Password
+            </label>
+            <div className="control">
+              <input name="password" type="password" className="input" />
+            </div>
+          </div>
+          <div className="field">
+            <div className="control">
+              <button type="submit" className="button is-medium is-light">
+                {displayName}
+              </button>
+            </div>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+      </div>
+    </section>
   )
 }
 
