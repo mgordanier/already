@@ -3,6 +3,12 @@ const path = require('path')
 const morgan = require('morgan')
 const compression = require('compression')
 const db = require('./db')
+
+const session = require('express-session')
+const passport = require('passport')
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
+const sessionStore = new SequelizeStore({db})
+
 const app = express()
 const PORT = process.env.PORT || 5000
 
@@ -16,8 +22,34 @@ app.use(express.urlencoded({ extended: true }))
 // compression middleware
 app.use(compression())
 
-// // routes
-// app.use('/api', require('./api'))
+// passport registration
+
+passport.serializeUser((user, done) => done(null, user.id))
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await db.models.user.findByPk(id)
+    done(null, user)
+  } catch (err) {
+    done(err)
+  }
+})
+
+ // session middleware with passport
+ app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'dev secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+  })
+)
+app.use(passport.initialize())
+app.use(passport.session())
+
+
+// routes
+app.use('/api', require('./api'))
 
 // SERVER TEST ROUTES
 app.get('/api/hello', (req, res) => {
@@ -31,8 +63,8 @@ app.post('/api/world', (req, res) => {
   )
 })
 
-// // static file-serving middleware
-// app.use(express.static(path.join(__dirname, '..', 'public')))
+// static file-serving middleware
+app.use(express.static(path.join(__dirname, '..', '/client/public')))
 
 // // any remaining requests with an extension (.js, .css, etc.) send 404
 // app.use((req, res, next) => {
@@ -46,7 +78,7 @@ app.post('/api/world', (req, res) => {
 // })
 // // sends index.html
 // app.use('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+//   res.sendFile(path.join(__dirname, '..', '/client/public/index.html'))
 // })
 
 // error handling endware
