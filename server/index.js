@@ -7,7 +7,7 @@ const db = require('./db')
 const session = require('express-session')
 const passport = require('passport')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
-const sessionStore = new SequelizeStore({db})
+const sessionStore = new SequelizeStore({ db })
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -35,33 +35,21 @@ passport.deserializeUser(async (id, done) => {
   }
 })
 
- // session middleware with passport
- app.use(
+// session middleware with passport
+app.use(
   session({
     secret: process.env.SESSION_SECRET || 'dev secret',
     store: sessionStore,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
   })
 )
 app.use(passport.initialize())
 app.use(passport.session())
 
-
 // routes
 app.use('/api', require('./api'))
-
-// SERVER TEST ROUTES
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' })
-})
-
-app.post('/api/world', (req, res) => {
-  console.log(req.body)
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`
-  )
-})
+app.use('/auth', require('./auth'))
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', '/client/public')))

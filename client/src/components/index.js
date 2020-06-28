@@ -1,3 +1,3 @@
 export {default as Navbar} from './Navbar'
-export {default as UserHome} from './UserHome'
+export {default as AllHabits} from './AllHabits'
 export {Login, Signup} from './AuthForm'
