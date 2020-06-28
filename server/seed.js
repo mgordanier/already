@@ -22,15 +22,15 @@ async function seed() {
   console.log(`seeded ${habits.length} habits`)
 
   const activities = await Promise.all([
-    Activity.create({ date: new Date(2020, 7, 20), habitId: 1 }),
-    Activity.create({ date: new Date(2020, 7, 11), habitId: 1 }),
-    Activity.create({ date: new Date(2020, 7, 5), habitId: 1 }),
-    Activity.create({ date: new Date(2020, 6, 21), habitId: 1 }),
-    Activity.create({ date: new Date(2020, 7, 25), habitId: 2 }),
-    Activity.create({ date: new Date(2020, 7, 6), habitId: 3 }),
-    Activity.create({ date: new Date(2020, 7, 19), habitId: 3 }),
-    Activity.create({ date: new Date(2020, 6, 15), habitId: 3 }),
-    Activity.create({ date: new Date(2020, 7, 29), habitId: 4 }),
+    Activity.create({ date: new Date(2020, 5, 20), habitId: 1 }),
+    Activity.create({ date: new Date(2020, 5, 11), habitId: 1 }),
+    Activity.create({ date: new Date(2020, 5, 5), habitId: 1 }),
+    Activity.create({ date: new Date(2020, 4, 21), habitId: 1 }),
+    Activity.create({ date: new Date(2020, 5, 25), habitId: 2 }),
+    Activity.create({ date: new Date(2020, 5, 6), habitId: 3 }),
+    Activity.create({ date: new Date(2020, 5, 19), habitId: 3 }),
+    Activity.create({ date: new Date(2020, 4, 15), habitId: 3 }),
+    Activity.create({ date: new Date(2020, 5, 29), habitId: 4 }),
   ])
   console.log(`seeded ${activities.length} habits`)
 
