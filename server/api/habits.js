@@ -3,7 +3,7 @@ const { Habit } = require('../db/models')
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const habit = Habit.findByPk(req.params.id)
+    const habit = await Habit.findByPk(req.params.id)
     res.send(habit)
   } catch (error) {
     next(error)
@@ -12,7 +12,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.get('/user/:userId', async (req, res, next) => {
   try {
-    const userHabits = Habit.findAll({ where: { userId: req.params.userId } })
+    const userHabits = await Habit.findAll({ where: { userId: req.params.userId } })
     res.send(userHabits)
   } catch (error) {
     next(error)

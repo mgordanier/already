@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('./db')
-const { User, Habit } = require('./db/models')
+const { User, Habit, Activity } = require('./db/models')
 
 async function seed() {
   await db.sync({ force: true })
@@ -20,6 +20,19 @@ async function seed() {
     Habit.create({ name: 'garden', color: 'green', userId: 2 }),
   ])
   console.log(`seeded ${habits.length} habits`)
+
+  const activities = await Promise.all([
+    Activity.create({ date: new Date(2020, 7, 20), habitId: 1 }),
+    Activity.create({ date: new Date(2020, 7, 11), habitId: 1 }),
+    Activity.create({ date: new Date(2020, 7, 5), habitId: 1 }),
+    Activity.create({ date: new Date(2020, 6, 21), habitId: 1 }),
+    Activity.create({ date: new Date(2020, 7, 25), habitId: 2 }),
+    Activity.create({ date: new Date(2020, 7, 6), habitId: 3 }),
+    Activity.create({ date: new Date(2020, 7, 19), habitId: 3 }),
+    Activity.create({ date: new Date(2020, 6, 15), habitId: 3 }),
+    Activity.create({ date: new Date(2020, 7, 29), habitId: 4 }),
+  ])
+  console.log(`seeded ${activities.length} habits`)
 
   console.log(`seeded successfully`)
 }
