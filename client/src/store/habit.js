@@ -52,6 +52,17 @@ export const getHabit = (habitId) => async (dispatch) => {
   }
 }
 
+export const addActivity = (habitId, activityDate) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/api/habits/${habitId}/add-activity`, {
+      activityDate,
+    })
+    dispatch(gotHabit(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 // REDUCER
 export default function (state = defaultHabit, action) {
   switch (action.type) {
