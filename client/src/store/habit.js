@@ -63,6 +63,15 @@ export const addActivity = (habitId, activityDate) => async (dispatch) => {
   }
 }
 
+export const removeActivity = (activityId) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`/api/habits/activities/${activityId}`)
+    dispatch(gotHabit(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 // REDUCER
 export default function (state = defaultHabit, action) {
   switch (action.type) {

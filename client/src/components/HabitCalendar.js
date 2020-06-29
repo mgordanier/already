@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Calendar from 'react-calendar'
-import { addActivity } from '../store'
+import { addActivity, removeActivity } from '../store'
 
 const isSameDay = (first, second) => {
   first = new Date(first)
@@ -27,9 +27,17 @@ const HabitCalendar = (props) => {
     }
   }
 
-  const markDay = (value, event) => {
+  const toggleDay = (value, event) => {
     console.log('Clicked day: ', value)
-    dispatch(addActivity(habit.id, value))
+    //check if value date matches habit activities
+    const [matchingActivity] = habit.activities.filter((activity) =>
+      isSameDay(activity.date, value)
+    )
+    if (matchingActivity) {
+      dispatch(removeActivity(matchingActivity.id))
+    } else {
+      dispatch(addActivity(habit.id, value))
+    }
   }
 
   return (
@@ -39,7 +47,7 @@ const HabitCalendar = (props) => {
           className="container"
           onChange={onChange}
           value={value}
-          onClickDay={markDay}
+          onClickDay={toggleDay}
           tileClassName={tileClassName}
         />
       ) : (

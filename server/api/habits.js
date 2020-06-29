@@ -27,6 +27,20 @@ router.put('/:id/add-activity', async (req, res, next) => {
     next(error)
   }
 })
+router.delete('/activities/:activityId', async (req, res, next) => {
+  try {
+    const activity = await Activity.findByPk(req.params.activityId)
+    const habitId = activity.habitId
+    await activity.destroy()
+    const habit = await Habit.findOne({
+      where: { id: habitId },
+      include: Activity,
+    })
+    res.send(habit)
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.get('/user/:userId', async (req, res, next) => {
   try {
