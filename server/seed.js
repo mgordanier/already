@@ -16,6 +16,7 @@ async function seed() {
   const habits = await Promise.all([
     Habit.create({ name: 'fetch', color: 'red', userId: 1 }),
     Habit.create({ name: 'dig', color: 'blue', userId: 1 }),
+    Habit.create({ name: 'chase tail', color: 'green', userId: 1 }),
     Habit.create({ name: 'exercise', color: 'purple', userId: 2 }),
     Habit.create({ name: 'garden', color: 'green', userId: 2 }),
   ])
