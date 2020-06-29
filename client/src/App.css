@@ -1,6 +1,60 @@
-h1, h2, h3, h4, h5 {
+:root {
+  --red-text: #ff595e;
+  --red-background: #ff595e;
+  --yellow-text: #ffca3a;
+  --yellow-background: #ffca3a;
+  --green-text: #25bb5f;
+  --green-background: #25bb5f;
+  --blue-text: #6f71ec;
+  --blue-background: #6f71ec;
+  --purple-text: #7e5dac;
+  --purple-background: #7e5dac;
+}
+
+.red-text {
+  color: var(--red-text);
+}
+.red-background {
+  background-color: var(--red-background) !important;
+  color: white !important;
+}
+.yellow-text {
+  color: var(--yellow-text);
+}
+.yellow-background {
+  background-color: var(--yellow-background) !important;
+  color: white !important;
+}
+.green-text {
+  color: var(--green-text);
+}
+.green-background {
+  background-color: var(--green-background) !important;
+  color: white !important;
+}
+.blue-text {
+  color: var(--blue-text);
+}
+.blue-background {
+  background-color: var(--blue-background) !important;
+  color: white !important;
+}
+.purple-text {
+  color: var(--purple-text);
+}
+.purple-background {
+  background: var(--purple-background) !important;
+  color: white !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: 'Quicksand', sans-serif;
 }
+
 .default-max-width {
   max-width: 550px;
 }
