@@ -1,9 +1,9 @@
 import axios from 'axios'
-import history from '../history'
 
 // ACTION TYPES
 const GET_MY_HABITS = 'GET_MY_HABITS'
 const GET_HABIT = 'GET_HABIT'
+const CLEAR_HABITS = 'CLEAR_HABITS'
 
 // INITIAL STATE
 
@@ -24,6 +24,12 @@ const gotHabit = (habit) => {
   return {
     type: GET_HABIT,
     habit,
+  }
+}
+
+export const clearHabits = () => {
+  return {
+    type: CLEAR_HABITS,
   }
 }
 
@@ -50,9 +56,11 @@ export const getHabit = (habitId) => async (dispatch) => {
 export default function (state = defaultHabit, action) {
   switch (action.type) {
     case GET_MY_HABITS:
-      return { ...state, all: action.allHabits }
+      return { ...state, all: action.myHabits }
     case GET_HABIT:
       return { ...state, selected: action.habit }
+    case CLEAR_HABITS:
+      return defaultHabit
     default:
       return state
   }

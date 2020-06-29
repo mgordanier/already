@@ -12,14 +12,19 @@ const AuthForm = (props) => {
 
   return (
     <section className="section">
-      <div className="container box form">
+      <div className="container box default-max-width">
         <form onSubmit={handleSubmit} name={name}>
           <div className="field">
             <label htmlFor="email" className="label">
               Email
             </label>
             <div className="control">
-              <input name="email" type="text" className="input" />
+              <input
+                name="email"
+                type="text"
+                autoComplete="current-email"
+                className="input"
+              />
             </div>
           </div>
           <div className="field">
@@ -27,7 +32,12 @@ const AuthForm = (props) => {
               Password
             </label>
             <div className="control">
-              <input name="password" type="password" className="input" />
+              <input
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                className="input"
+              />
             </div>
           </div>
           <div className="field">
