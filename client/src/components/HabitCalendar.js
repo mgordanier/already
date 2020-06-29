@@ -5,8 +5,8 @@ const HabitCalendar = (props) => {
   const [value, onChange] = useState(new Date())
 
   return (
-    <div>
-      <Calendar onChange={onChange} value={value} />
+    <div >
+      <Calendar className="container" onChange={onChange} value={value} />
     </div>
   )
 }

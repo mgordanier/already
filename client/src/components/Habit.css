@@ -1,0 +1,16 @@
+.react-calendar {
+  border: none;
+}
+.react-calendar__tile {
+  height: 48px;
+}
+.react-calendar button {
+  border: 5px solid white;
+}
+.react-calendar__tile--active {
+  border-radius: 50%;
+}
+.habit h1 {
+  font-weight: normal;
+  text-align: center;
+}

@@ -7,8 +7,6 @@ import { getHabit } from '../store'
 const AllHabits = () => {
   const habits = useSelector((state) => state.habit.all)
   const dispatch = useDispatch()
-
-  console.log(habits)
   return (
     <div className="section">
       {habits
